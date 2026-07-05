@@ -34,6 +34,13 @@ Restart Claude Code to load settings and skills.
 │   ├── markitdown-converter/  # PDF/Word/Excel to markdown
 │   ├── anthropics-skills/     # Submodule: official Anthropic skills
 │   └── mattpocock-skills/     # Submodule: Matt Pocock's skills collection
+├── plugins/
+│   ├── installed_plugins.json # List of installed plugins
+│   ├── known_marketplaces.json # Known plugin marketplaces
+│   └── marketplaces/
+│       ├── caveman/           # Submodule: caveman plugin
+│       ├── addy-agent-skills/ # Submodule: Addy Osmani's agent skills
+│       └── anthropic-agent-skills/ # Submodule: Anthropic agent skills
 ├── agents/                    # Custom agent definitions (if any)
 ├── .gitignore                 # Excludes cache, logs, sessions
 └── .gitmodules                # Submodule configuration
@@ -115,11 +122,18 @@ Custom plugins (caveman, agent-skills) are configured in settings.json's `enable
 SessionStart hook activates caveman mode on every session (writing `.caveman-mode-active` file). Supports different intensity levels: lite, full, ultra.
 
 ### Submodules
-Two git submodules provide external skill collections:
-- **anthropics-skills/** — https://github.com/anthropics/skills
-- **mattpocock-skills/** — https://github.com/mattpocock/skills
+Four git submodules provide external skill collections and plugin marketplaces:
 
-Update all submodules with `git submodule update --remote` or update individually with `cd skills/<submodule> && git pull origin main`.
+**Skills:**
+- **skills/anthropics-skills/** — https://github.com/anthropics/skills
+- **skills/mattpocock-skills/** — https://github.com/mattpocock/skills
+
+**Plugin Marketplaces:**
+- **plugins/marketplaces/caveman/** — https://github.com/JuliusBrussee/caveman
+- **plugins/marketplaces/addy-agent-skills/** — https://github.com/addyosmani/agent-skills
+- **plugins/marketplaces/anthropic-agent-skills/** — https://github.com/anthropics/skills
+
+Update all submodules with `git submodule update --remote` or update individually with `cd <path> && git pull origin main`.
 
 ## What's Git-Ignored
 
@@ -134,11 +148,25 @@ See `.gitignore` for the full list.
 
 ## When Cloning to a New Machine
 
-1. Clone with submodules: `git clone --recursive https://github.com/Kritarth-Dandapat/.claude.git ~/.claude`
-2. Install dependencies: `pipx install markitdown`
-3. Restart Claude Code — settings and skills auto-load
+Full setup with all skills and plugins:
+```bash
+git clone --recursive https://github.com/Kritarth-Dandapat/.claude.git ~/.claude
+cd ~/.claude
+pipx install markitdown
+```
 
-For server/headless setups, only steps 1–2 are needed; CLI usage works without a GUI.
+Restart Claude Code — settings, skills, and plugins auto-load.
+
+The `--recursive` flag clones all 5 submodules:
+- skills/anthropics-skills
+- skills/mattpocock-skills
+- plugins/marketplaces/caveman
+- plugins/marketplaces/addy-agent-skills
+- plugins/marketplaces/anthropic-agent-skills
+
+Without `--recursive`, you'll need to run `git submodule update --init --recursive` after cloning.
+
+For server/headless setups, steps 1–3 work without a GUI.
 
 ## When Adding Changes
 
