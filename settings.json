@@ -1,7 +1,25 @@
 {
   "model": "haiku",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'full' > ~/.claude/.caveman-mode-active 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/kritarth/.claude/statusline-custom.sh",
+    "refreshInterval": 2
+  },
   "enabledPlugins": {
-    "caveman@caveman": true
+    "caveman@caveman": true,
+    "agent-skills@addy-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -15,20 +33,13 @@
         "source": "github",
         "repo": "anthropics/skills"
       }
+    },
+    "addy-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "addyosmani/agent-skills"
+      }
     }
   },
-  "theme": "dark",
-  "statusLine": {
-    "type": "command",
-    "command": "bash /Users/kritarth/.claude/statusline-custom.sh",
-    "refreshInterval": 2
-  },
-  "hooks": {
-    "SessionStart": [{
-      "hooks": [{
-        "type": "command",
-        "command": "echo 'full' > ~/.claude/.caveman-mode-active 2>/dev/null || true"
-      }]
-    }]
-  }
+  "theme": "dark"
 }
