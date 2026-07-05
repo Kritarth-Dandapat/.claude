@@ -1,3 +1,12 @@
 [submodule "skills/mattpocock-skills"]
 	path = skills/mattpocock-skills
 	url = https://github.com/mattpocock/skills.git
+[submodule "plugins/marketplaces/caveman"]
+	path = plugins/marketplaces/caveman
+	url = https://github.com/JuliusBrussee/caveman.git
+[submodule "plugins/marketplaces/addy-agent-skills"]
+	path = plugins/marketplaces/addy-agent-skills
+	url = https://github.com/addyosmani/agent-skills.git
+[submodule "plugins/marketplaces/anthropic-agent-skills"]
+	path = plugins/marketplaces/anthropic-agent-skills
+	url = https://github.com/anthropics/skills.git
